@@ -8,10 +8,13 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
+<<<<<<< HEAD
 
         watch: {
           ignored: ['**/android/**', '**/ios/**', '**/node_modules/**']
         }
+=======
+>>>>>>> f4191e3be330613914618973464e3420f0df7d51
       },
       plugins: [react()],
       define: {
