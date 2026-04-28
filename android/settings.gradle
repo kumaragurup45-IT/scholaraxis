@@ -1,0 +1,24 @@
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+include ':app'
+
+// Make capacitor-cordova-android-plugins optional to prevent sync errors if it doesn't exist
+def cordovaPluginsDir = new File('./capacitor-cordova-android-plugins/')
+if (cordovaPluginsDir.exists()) {
+    include ':capacitor-cordova-android-plugins'
+    project(':capacitor-cordova-android-plugins').projectDir = cordovaPluginsDir
+}
+
+// Include capacitor-android project
+def capacitorAndroidDir = new File('../node_modules/@capacitor/android/capacitor')
+if (capacitorAndroidDir.exists()) {
+    include ':capacitor-android'
+    project(':capacitor-android').projectDir = capacitorAndroidDir
+}
+
+// Make capacitor.settings.gradle optional
+def capacitorSettings = new File('capacitor.settings.gradle')
+if (capacitorSettings.exists()) {
+    apply from: 'capacitor.settings.gradle'
+}
